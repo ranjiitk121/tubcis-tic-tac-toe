@@ -55,7 +55,7 @@ function boxClicked(e) {
         // set visibility to hidden
         box.style.display = 'none';
       });
-      postData('http://localhost:5000/games/move', {
+      postData(process.env.GAME_MOVE_URL, {
         gameId,
         positionOfMove: id,
       }).then((data) => {
@@ -113,7 +113,7 @@ async function postData(url = '', data = {}) {
 // make request for creating a game
 
 function makeNewGame() {
-  postData('http://localhost:5000/games/new', {
+  postData(process.env.NEW_GAME_URL, {
     username1: 'O',
     username2: 'x',
   }).then((data) => {
