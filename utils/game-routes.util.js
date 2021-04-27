@@ -51,6 +51,12 @@ function playerHasWon(moves, newPlayer) {
       console.log(`${currentPlayer} wins on horizentally in the middle`);
     }
   }
+  if (moves[3] === currentPlayer) {
+    if (moves[4] === currentPlayer && moves[6] === currentPlayer) {
+      hasPlayerWon = true;
+      console.log(`${currentPlayer} wins on digonally in the middle`);
+    }
+  }
   return hasPlayerWon;
 }
 
