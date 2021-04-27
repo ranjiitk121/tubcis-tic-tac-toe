@@ -18,8 +18,6 @@ function playerHasWon(moves, newPlayer) {
   const currentPlayer = newPlayer === 'X' ? 'O' : 'X';
 
   if (moves[0] === currentPlayer) {
-    console.log(`move at 0 ${moves[0]}`);
-    console.log(` moves at 1 and 2:  ${moves[1]} and  ${moves[2]} `);
     if (moves[1] === currentPlayer && moves[2] === currentPlayer) {
       hasPlayerWon = true;
       console.log(`${currentPlayer} wins on the up top`);
