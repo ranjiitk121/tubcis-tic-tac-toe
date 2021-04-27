@@ -41,7 +41,10 @@ function boxClicked(e) {
         // set visibility to hidden
         box.style.display = 'none';
       });
-      postData('http://localhost:5000/games/move', { gameId, positionOfMove: id }).then((data) => {
+      postData('https://lit-retreat-32140.herokuapp.com/games/move', {
+        gameId,
+        positionOfMove: id,
+      }).then((data) => {
         // JSON data parsed by `data.json()` call
         // all boxes disppaer and set text to wating
         // set text to normal after 2 seconsds
@@ -96,7 +99,10 @@ async function postData(url = '', data = {}) {
 // make request for creating a game
 
 function makeNewGame() {
-  postData('http://localhost:5000/games/new', { username1: 'O', username2: 'x' }).then((data) => {
+  postData('https://lit-retreat-32140.herokuapp.com/games/new', {
+    username1: 'O',
+    username2: 'x',
+  }).then((data) => {
     if (data.game) {
       gameId = data.game._id;
 
