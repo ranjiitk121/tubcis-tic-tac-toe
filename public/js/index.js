@@ -100,7 +100,7 @@ async function postData(url = '', data = {}) {
     // cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
     // credentials: 'same-origin', // include, *same-origin, omit
     headers: {
-      Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDg4MTA4ZjBlOGY3MDAwMTViZTJmNzAiLCJpYXQiOjE2MTk1NTYyMjYsImV4cCI6MTYxOTkxNjIyNn0.ssyyigSUzkXlfDEVTHsuzbbFLOYtMCx12q2k3V-9BZU`,
+      Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDg4MTA4ZjBlOGY3MDAwMTViZTJmNzAiLCJpYXQiOjE2MTk1NTY3MzQsImV4cCI6MTYxOTkxNjczNH0.i3DRc2xcTjrb1bognCfcG5Ctd-kRmPkbfcXfBZnZNyc`,
       'Content-Type': 'application/json',
 
       Accept: '*/*',
