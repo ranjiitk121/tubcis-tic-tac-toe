@@ -2,11 +2,24 @@ const gameboard = document.getElementById('gameboard');
 const boxes = Array.from(document.getElementsByClassName('box'));
 const restartBtn = document.getElementById('restartBtn');
 let gameId = null;
+let authToken = null;
 const playText = document.getElementById('playText');
 const spaces = [null, null, null, null, null, null, null, null, null];
 const O_TEXT = 'O';
 const X_TEXT = 'X';
 let currentPlayer = O_TEXT;
+
+askForAuthToken();
+function askForAuthToken() {
+  authToken = prompt(
+    "Please provide a valid token. if you won't provide valid token, this page will behave wierdly"
+  );
+  console.log(authToken);
+  if (!authToken) {
+    askForAuthToken();
+  }
+  makeNewGame();
+}
 
 const drawBoard = () => {
   boxes.forEach((box, index) => {
@@ -83,8 +96,7 @@ async function postData(url = '', data = {}) {
     // cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
     // credentials: 'same-origin', // include, *same-origin, omit
     headers: {
-      Authorization:
-        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDg4MTA4ZjBlOGY3MDAwMTViZTJmNzAiLCJpYXQiOjE2MTk1MzcwNzB9.IIPb6m91hMlsBO3LI1tHjvU36DpAaRR8ucIMrk5_Qi8',
+      Authorization: `Bearer ${authToken}`,
       'Content-Type': 'application/json',
 
       Accept: '*/*',
@@ -114,5 +126,3 @@ function makeNewGame() {
 restartBtn.addEventListener('click', () => {
   window.location.reload();
 });
-
-makeNewGame();

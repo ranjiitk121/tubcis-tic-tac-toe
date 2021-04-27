@@ -10,7 +10,19 @@ const app = express();
 
 // require('dotenv').config();
 // setup helmet
-app.use(helmet());
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        ...helmet.contentSecurityPolicy.getDefaultDirectives(),
+
+        'script-src': ['self', 'localhost:5000', 'https://lit-retreat-32140.herokuapp.com/'],
+
+        'connect-src': ['https://lit-retreat-32140.herokuapp.com/', 'localhost:5000'],
+      },
+    },
+  })
+);
 app.use(compression());
 
 const PORT = process.env.PORT || 5000;
