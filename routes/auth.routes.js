@@ -6,7 +6,8 @@ module.exports = () => {
   router.post('/register', registerUserValidation, async (req, res) => {
     try {
       // check if user with email is already there
-      const user = User.findOne({ emai: req.body.email });
+      const user = await User.findOne({ email: req.body.email });
+
       if (user) {
         // return msg with
         return res.json({
