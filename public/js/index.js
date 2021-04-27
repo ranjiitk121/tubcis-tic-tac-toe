@@ -2,24 +2,25 @@ const gameboard = document.getElementById('gameboard');
 const boxes = Array.from(document.getElementsByClassName('box'));
 const restartBtn = document.getElementById('restartBtn');
 let gameId = null;
-let authToken = null;
+let authToken =
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDg4MTA4ZjBlOGY3MDAwMTViZTJmNzAiLCJpYXQiOjE2MTk1Mzk0MzZ9.y9K6mWNwYe2vVWZnaQ2RNf3ALpDn1PvZcr6s6aOzzSA';
 const playText = document.getElementById('playText');
 const spaces = [null, null, null, null, null, null, null, null, null];
 const O_TEXT = 'O';
 const X_TEXT = 'X';
 let currentPlayer = O_TEXT;
 
-askForAuthToken();
-function askForAuthToken() {
-  authToken = prompt(
-    "Please provide a valid token. if you won't provide valid token, this page will behave wierdly"
-  );
-  console.log(authToken);
-  if (!authToken) {
-    askForAuthToken();
-  }
-  makeNewGame();
-}
+// askForAuthToken();
+// function askForAuthToken() {
+//   authToken = prompt(
+//     "Please provide a valid token. if you won't provide valid token, this page will behave wierdly"
+//   );
+//   console.log(`Bearer ${authToken}`);
+//   if (!authToken) {
+//     askForAuthToken();
+//   }
+//   makeNewGame();
+// }
 
 const drawBoard = () => {
   boxes.forEach((box, index) => {
@@ -54,7 +55,7 @@ function boxClicked(e) {
         // set visibility to hidden
         box.style.display = 'none';
       });
-      postData('https://lit-retreat-32140.herokuapp.com/games/move', {
+      postData('http://localhost:5000/games/move', {
         gameId,
         positionOfMove: id,
       }).then((data) => {
@@ -70,6 +71,7 @@ function boxClicked(e) {
         playText.innerHTML = 'Gaame is On';
 
         const { game } = data;
+        console.log(data);
         if (data.won) {
           /// won the game
           playText.innerHTML = `${currentPlayer === 'O_TEXT' ? X_TEXT : O_TEXT} wins!!`;
@@ -96,7 +98,7 @@ async function postData(url = '', data = {}) {
     // cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
     // credentials: 'same-origin', // include, *same-origin, omit
     headers: {
-      Authorization: `Bearer ${authToken}`,
+      Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDg4MTA4ZjBlOGY3MDAwMTViZTJmNzAiLCJpYXQiOjE2MTk1Mzk0MzZ9.y9K6mWNwYe2vVWZnaQ2RNf3ALpDn1PvZcr6s6aOzzSA`,
       'Content-Type': 'application/json',
 
       Accept: '*/*',
@@ -111,7 +113,7 @@ async function postData(url = '', data = {}) {
 // make request for creating a game
 
 function makeNewGame() {
-  postData('https://lit-retreat-32140.herokuapp.com/games/new', {
+  postData('http://localhost:5000/games/new', {
     username1: 'O',
     username2: 'x',
   }).then((data) => {
@@ -126,3 +128,4 @@ function makeNewGame() {
 restartBtn.addEventListener('click', () => {
   window.location.reload();
 });
+makeNewGame();
