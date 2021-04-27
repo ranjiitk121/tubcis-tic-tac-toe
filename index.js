@@ -2,16 +2,23 @@ const express = require('express');
 const createError = require('http-errors');
 const mongoose = require('mongoose');
 const helmet = require('helmet');
+const path = require('path');
 const compression = require('compression');
 
 const app = express();
 // require dotenv to setup env variables
 
-// require('dotenv').config();
+require('dotenv').config();
 // setup helmet
 app.use(helmet());
 app.use(compression());
+
 const PORT = process.env.PORT || 5000;
+// view engine
+app.set('views', 'views');
+app.set('view engine', 'ejs');
+
+app.use(express.static(path.join(__dirname, '/public')));
 
 const routes = require('./routes');
 

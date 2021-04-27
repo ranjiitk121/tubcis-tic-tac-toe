@@ -15,6 +15,10 @@ module.exports = () => {
   router.post('/new', auth, startGameValidatoin, async (req, res) => {
     try {
       const { username1, username2 } = req.body;
+      if (username1 === username2) {
+        // usernames can't be same
+        return res.josn({ error: true, msg: 'username1 and username2 cannot be the same.' });
+      }
       const game = new Game({ username1, username2, status: 'on-going', currentPlayer: username1 });
       // initial the game by setting moves array to 9 empty string
       game.moves = ['', '', '', '', '', '', '', '', ''];
@@ -82,7 +86,7 @@ module.exports = () => {
           isTied: true,
           winner: null,
         });
-        return res.json({ tied: true, isGameOVer: true, error: false });
+        return res.json({ isTied: true, isGameOVer: true, error: false });
       }
       await Game.findByIdAndUpdate(gameId, {
         moves: newMovesAndPlayer.moves,
