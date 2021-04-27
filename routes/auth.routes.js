@@ -4,9 +4,18 @@ const User = require('../models/user.model');
 
 module.exports = () => {
   router.post('/register', registerUserValidation, async (req, res) => {
-    const user = new User(req.body);
     try {
-      await user.save();
+      // check if user with email is already there
+      const user = User.findOne({ emai: req.body.email });
+      if (user) {
+        // return msg with
+        return res.json({
+          error: true,
+          msg: 'User with this email already exists. Try new with email',
+        });
+      }
+      const newUser = new User(req.body);
+      await newUser.save();
       res.status(201).send({ succes: true, msg: 'user was successfully create. please login now' });
     } catch (e) {
       res
