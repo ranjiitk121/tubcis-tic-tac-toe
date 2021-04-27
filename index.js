@@ -2,6 +2,7 @@ const express = require('express');
 const createError = require('http-errors');
 const mongoose = require('mongoose');
 const helmet = require('helmet');
+const compression = require('compression');
 
 const app = express();
 // require dotenv to setup env variables
@@ -9,6 +10,7 @@ const app = express();
 // require('dotenv').config();
 // setup helmet
 app.use(helmet());
+app.use(compression());
 const PORT = process.env.PORT || 5000;
 
 const routes = require('./routes');
