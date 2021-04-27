@@ -74,7 +74,7 @@ function boxClicked(e) {
         console.log(data);
         if (data.won) {
           /// won the game
-          playText.innerHTML = `${currentPlayer === 'O_TEXT' ? X_TEXT : O_TEXT} wins!!`;
+          playText.innerHTML = `${data.winner} wins!!`;
           return;
         }
         if (data.isTied) {
