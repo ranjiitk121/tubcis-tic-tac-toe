@@ -6,7 +6,7 @@ const helmet = require('helmet');
 const app = express();
 // require dotenv to setup env variables
 
-require('dotenv').config();
+// require('dotenv').config();
 // setup helmet
 app.use(helmet());
 const PORT = process.env.PORT || 5000;
