@@ -15,12 +15,20 @@ const gameSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  status: {
-    type: String,
+  isComplete: {
+    type: Boolean,
+    defult: false,
   },
-  lastMoveBy: {
+  isTied: {
+    type: Boolean,
+    default: false,
+  },
+  currentPlayer: {
     type: String,
-    default: 'username1',
+    default: 'O', // inital by player one
+  },
+  winner: {
+    type: String,
   },
 });
 

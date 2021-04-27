@@ -1,11 +1,14 @@
 const express = require('express');
 const createError = require('http-errors');
 const mongoose = require('mongoose');
+const helmet = require('helmet');
 
 const app = express();
 // require dotenv to setup env variables
-require('dotenv').config();
 
+require('dotenv').config();
+// setup helmet
+app.use(helmet());
 const PORT = process.env.PORT || 5000;
 
 const routes = require('./routes');
@@ -20,14 +23,17 @@ app.use((err, req, res, next) => {
   const status = err.status || 500;
 
   res.status(status);
-  res.json({ error: true, msg: 'something went wrong or page is not found' });
+  res.json({
+    error: true,
+    msg: res.msg || 'Resouce you are looking is not found or something went wrong from our side',
+  });
 });
 
 mongoose
-  .connect(process.env.DEV_MONG_URI, {
+  .connect(process.env.PROD_MONG_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    useFindAndModify: true,
+    useFindAndModify: false,
   })
   .then(() => {
     app.listen(PORT, () => {
@@ -36,4 +42,5 @@ mongoose
   })
   .catch((err) => {
     console.log(err);
+    return;
   });

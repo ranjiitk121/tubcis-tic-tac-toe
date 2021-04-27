@@ -1,5 +1,5 @@
 const { body, check, checkSchema } = require('express-validator');
-
+const { Types } = require('mongoose');
 const startGameValidatoin = [
   body('username1')
     .not()
@@ -53,8 +53,27 @@ const loginVadiation = registerUserValidation
   .slice(1, 2)
   .concat([body('password').not().isEmpty().trim().escape().withMessage('A Password is required')]);
 
+const validateRequestParamsId = [
+  // for validating id provided by users as request paramete
+  check('id')
+    .escape()
+    .not()
+    .isEmpty()
+    .trim()
+    .customSanitizer(async (value) => {
+      try {
+        const id = await Types.ObjectId(value);
+        return id;
+      } catch (err) {
+        throw new Error("couldn't find resrouce you are looking");
+      }
+    })
+    .bail()
+    .withMessage('resource (user prifle or podcast ) with id is not avaliable.'),
+];
 module.exports = {
   registerUserValidation,
   startGameValidatoin,
   loginVadiation,
+  validateRequestParamsId,
 };
