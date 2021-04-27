@@ -55,6 +55,8 @@ function boxClicked(e) {
         // set visibility to hidden
         box.style.display = 'none';
       });
+      //http://localhost:5000/
+      //https://lit-retreat-32140.herokuapp.com/games/move
       postData('https://lit-retreat-32140.herokuapp.com/games/move', {
         gameId,
         positionOfMove: id,
@@ -98,7 +100,7 @@ async function postData(url = '', data = {}) {
     // cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
     // credentials: 'same-origin', // include, *same-origin, omit
     headers: {
-      Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDg4MTA4ZjBlOGY3MDAwMTViZTJmNzAiLCJpYXQiOjE2MTk1Mzk0MzZ9.y9K6mWNwYe2vVWZnaQ2RNf3ALpDn1PvZcr6s6aOzzSA`,
+      Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDg4MTA4ZjBlOGY3MDAwMTViZTJmNzAiLCJpYXQiOjE2MTk1NTYyMjYsImV4cCI6MTYxOTkxNjIyNn0.ssyyigSUzkXlfDEVTHsuzbbFLOYtMCx12q2k3V-9BZU`,
       'Content-Type': 'application/json',
 
       Accept: '*/*',
@@ -113,6 +115,9 @@ async function postData(url = '', data = {}) {
 // make request for creating a game
 
 function makeNewGame() {
+  // //http://localhost:5000/
+  //https://lit-retreat-32140.herokuapp.com/games/new
+
   postData('https://lit-retreat-32140.herokuapp.com/games/new', {
     username1: 'O',
     username2: 'x',

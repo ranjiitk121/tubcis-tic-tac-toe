@@ -16,7 +16,8 @@ function isPositionAlreadyFilled(position) {
 function playerHasWon(moves, newPlayer) {
   let hasPlayerWon = false;
   const currentPlayer = newPlayer === 'X' ? 'O' : 'X';
-
+  console.log(`the current player: ${currentPlayer}`);
+  console.log(moves);
   if (moves[0] === currentPlayer) {
     if (moves[1] === currentPlayer && moves[2] === currentPlayer) {
       hasPlayerWon = true;
@@ -51,7 +52,10 @@ function playerHasWon(moves, newPlayer) {
       console.log(`${currentPlayer} wins on horizentally in the middle`);
     }
   }
-  if (moves[3] === currentPlayer) {
+  if (moves[2] === currentPlayer) {
+    console.log(moves[3]);
+
+    console.log(moves);
     if (moves[4] === currentPlayer && moves[6] === currentPlayer) {
       hasPlayerWon = true;
       console.log(`${currentPlayer} wins on digonally in the middle`);

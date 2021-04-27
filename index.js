@@ -9,7 +9,7 @@ const app = express();
 // require dotenv to setup env variables
 
 // require('dotenv').config();
-// setup helmet
+//setup helmet
 app.use(
   helmet({
     contentSecurityPolicy: {
