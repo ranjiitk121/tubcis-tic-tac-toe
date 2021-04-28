@@ -1,4 +1,4 @@
-const { body, check, checkSchema } = require('express-validator');
+const { body, check } = require('express-validator');
 const { Types } = require('mongoose');
 const startGameValidatoin = [
   body('username1')

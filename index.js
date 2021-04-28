@@ -8,7 +8,7 @@ const compression = require('compression');
 const app = express();
 // require dotenv to setup env variables
 
-// require('dotenv').config();
+require('dotenv').config();
 //setup helmet
 app.use(
   helmet({
